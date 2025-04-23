@@ -35,4 +35,4 @@ ENV NODE_ENV production
 
 EXPOSE 8080
 # Запускаем приложение
-CMD ["yarn", "run"]
+CMD ["vite", "preview"]
