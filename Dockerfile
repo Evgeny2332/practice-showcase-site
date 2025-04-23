@@ -33,4 +33,4 @@ COPY --from=builder /app/package.json ./package.json
 # Устанавливаем переменные окружения
 ENV NODE_ENV production
 # Запускаем приложение
-CMD ["yarn", "start"]
+CMD ["yarn", "run"]
