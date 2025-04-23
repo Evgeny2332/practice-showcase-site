@@ -26,25 +26,12 @@ RUN yarn build
 FROM base AS runner
 WORKDIR /app
 
-ENV NODE_ENV=production
-# Uncomment the following line in case you need sharp support
-# RUN apk add --no-cache vips
-
-# Копируем собранные файлы из стадии сборки
+# Копируем файлы из стадии сборки
 COPY --from=builder /app/public ./public
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=builder --chown=node:node /app/.next/standalone ./ 
-COPY --from=builder --chown=node:node /app/.next/static ./.next/static
-
-# Устанавливаем пользователя non-root
-USER node
-
-# Открываем порт, на котором будет работать приложение
-EXPOSE 3000
-
-# Устанавливаем переменную окружения для порта
-ENV PORT 3000
-
-# Команда для запуска приложения
-CMD ["node", "server.js"]
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+# Устанавливаем переменные окружения
+ENV NODE_ENV production
+# Запускаем приложение
+CMD ["yarn", "start"]
