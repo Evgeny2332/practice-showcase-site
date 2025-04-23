@@ -38,7 +38,7 @@ const Week1 = () => {
   return (
     <div className="container mx-auto py-8 px-4">
       <h1 className="text-3xl font-bold mb-8">Первая неделя практики</h1>
-      <div className="grid gap-8 md:grid-cols-2">
+      <div className="md:grid md:gap-8 md:grid-cols-2">
         {tasks.map((task, index) => (
           <TaskCardWithCode key={index} {...task} />
         ))}
