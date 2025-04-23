@@ -5,13 +5,12 @@ FROM node:20-alpine AS base
 WORKDIR /app
 
 # Копируем файлы зависимостей
-COPY package.json yarn.lock* ./ 
-# *yarn.lock* может не существовать, если используется npm
+COPY package.json ./ 
 
 # --- Стадия зависимостей ---
 FROM base AS deps
 # Устанавливаем зависимости
-RUN yarn install --frozen-lockfile
+RUN npm install --frozen-lockfile
 
 # --- Стадия сборки ---
 FROM base AS builder
@@ -19,8 +18,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Собираем приложение Next.js
-RUN yarn build
+RUN npm build
 
 # --- Стадия Production ---
 FROM base AS runner
@@ -35,4 +33,4 @@ ENV NODE_ENV production
 
 EXPOSE 8080
 # Запускаем приложение
-CMD ["vite", "preview"]
+CMD ["npm", "start"]
