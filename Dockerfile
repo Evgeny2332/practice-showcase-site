@@ -1,5 +1,5 @@
 # Используем официальный образ Node.js LTS (Long Term Support)
-FROM node:18-alpine AS base
+FROM node:20-alpine AS base
 
 # Устанавливаем рабочую директорию
 WORKDIR /app
@@ -32,5 +32,7 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 # Устанавливаем переменные окружения
 ENV NODE_ENV production
+
+EXPOSE 8080
 # Запускаем приложение
 CMD ["yarn", "run"]
