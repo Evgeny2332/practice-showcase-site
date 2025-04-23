@@ -4,16 +4,15 @@ import { TaskCardWithGithub } from "@/components/TaskCardWithGithub";
 const Week3 = () => {
   const tasks = [
     {
-      title: "Задача 1",
-      description: "Описание задачи 1",
-      githubLink: "https://github.com/your-username/repo-1",
-      screenshots: ["URL_скриншота_1", "URL_скриншота_2"],
+      title: "Мобильное приложение",
+      description: "Разработка мобильного приложения",
+      githubLink: "https://github.com/Besego/Reklamka/blob/main/second-week/app-release.apk",
+      screenshots: ["/public/imagesMobile/first.jpg", "public/imagesMobile/second.jpg","public/imagesMobile/third.jpg","public/imagesMobile/fourth.jpg","public/imagesMobile/five.jpg","public/imagesMobile/six.jpg","public/imagesMobile/seven.jpg","public/imagesMobile/eight.jpg","public/imagesMobile/nine.jpg","public/imagesMobile/ten.jpg"],
     },
     {
-      title: "Задача 2",
-      description: "Описание задачи 2",
-      githubLink: "https://github.com/your-username/repo-2",
-      screenshots: ["URL_скриншота_1", "URL_скриншота_2"],
+      title: "Данные по тестированию",
+      description: "Описание",
+      screenshots: ["/public/imagesMobile/test1.png", "/public/imagesMobile/test2.png","/public/imagesMobile/test3.png","/public/imagesMobile/test4.png","/public/imagesMobile/test5.png","/public/imagesMobile/test6.png","/public/imagesMobile/test7.png"],
     },
   ];
 

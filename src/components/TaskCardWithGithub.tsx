@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 interface TaskCardWithGithubProps {
   title: string;
   description: string;
-  githubLink: string;
+  githubLink?: string;
   screenshots: string[];
   className?: string;
 }
@@ -39,9 +39,11 @@ export function TaskCardWithGithub({
               className="overflow-hidden rounded-md bg-soft-blue p-2"
             >
               <img
+                width={512}
+                height={512}
                 src={screenshot}
                 alt={`${title} screenshot ${index + 1}`}
-                className="w-full object-cover rounded-md"
+                className="object-cover rounded-md"
               />
             </div>
           ))}

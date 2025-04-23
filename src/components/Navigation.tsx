@@ -32,8 +32,8 @@ export function Navigation() {
           </Link>
         </div>
         <div className="text-right">
-          <p className="font-semibold">Иванов Иван Иванович</p>
-          <p className="text-sm text-gray-600">Группа ПИ-22</p>
+          <p className="font-semibold">Бессонов Егор Вячеславович</p>
+          <p className="text-sm text-gray-600">Группа 22ИСП4-o9</p>
         </div>
       </div>
     </header>

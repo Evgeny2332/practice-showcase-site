@@ -3,10 +3,10 @@ import { TaskCardWithGithub } from "@/components/TaskCardWithGithub";
 
 const Week2 = () => {
   const task = {
-    title: "Задача недели 2",
-    description: "Описание задачи",
-    githubLink: "https://github.com/your-username/your-repo",
-    screenshots: ["URL_скриншота_1", "URL_скриншота_2"],
+    title: 'Разработка АИС "Рекламное агентсво"',
+    description: "Система предназначена для автоматизации взаимодействия клиентов и рекламного агентства, включая регистрацию, оформление заказов, их обработку, генерацию контрактов и управление заявками.",
+    githubLink: "https://github.com/Besego/Reklamka",
+    screenshots: ["/public/images/ERD.png", "/public/images/ChoiceDiagramm.png", "/public/images/StateDiagramm.png", "/public/images/MainFunc.png", "/public/images/DetailSchema.png", "/public/images/BigDiagramm.jpg", "/public/images/SecondBigDiagramm.jpg", "/public/imagesDesktop/First.png","public/imagesDesktop/Second.png","public/imagesDesktop/Third.png","public/imagesDesktop/Fourth.png","public/imagesDesktop/Five.png","public/imagesDesktop/Six.png","public/imagesDesktop/Seven.png"],
   };
 
   return (
