@@ -34,11 +34,14 @@ export function TaskCardWithGithub({
         </a>
         <div className="grid gap-4 md:grid-cols-2">
           {screenshots.map((screenshot, index) => (
-            <div key={index} className="overflow-hidden rounded-md">
+            <div 
+              key={index} 
+              className="overflow-hidden rounded-md bg-soft-blue p-2"
+            >
               <img
                 src={screenshot}
                 alt={`${title} screenshot ${index + 1}`}
-                className="w-full object-cover"
+                className="w-full object-cover rounded-md"
               />
             </div>
           ))}
