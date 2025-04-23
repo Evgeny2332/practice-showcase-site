@@ -1,35 +1,50 @@
-# Use official Node.js LTS image as base
-FROM node:18-alpine AS builder
+# Используем официальный образ Node.js LTS (Long Term Support)
+FROM node:18-alpine AS base
 
-# Set working directory
+# Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
+# Копируем файлы зависимостей
+COPY package.json yarn.lock* ./ 
+# *yarn.lock* может не существовать, если используется npm
 
-# Install dependencies
-RUN npm ci --only=production
+# --- Стадия зависимостей ---
+FROM base AS deps
+# Устанавливаем зависимости
+RUN yarn install --frozen-lockfile
 
-# Copy the rest of the application code
+# --- Стадия сборки ---
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Copy public folder explicitly
-COPY public ./public
+# Собираем приложение Next.js
+RUN yarn build
 
-# Build the React app
-RUN npm run build
+# --- Стадия Production ---
+FROM base AS runner
+WORKDIR /app
 
-# Use nginx for serving the built app
-FROM nginx:alpine
+ENV NODE_ENV=production
+# Uncomment the following line in case you need sharp support
+# RUN apk add --no-cache vips
 
-# Copy built files from the builder stage
-COPY --from=builder /app/build /usr/share/nginx/html
+# Копируем собранные файлы из стадии сборки
+COPY --from=builder /app/public ./public
+# Automatically leverage output traces to reduce image size
+# https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY --from=builder --chown=node:node /app/.next/standalone ./ 
+COPY --from=builder --chown=node:node /app/.next/static ./.next/static
 
-# Copy public folder to nginx
-COPY --from=builder /app/public /usr/share/nginx/html/public
+# Устанавливаем пользователя non-root
+USER node
 
-# Expose port 80
-EXPOSE 80
+# Открываем порт, на котором будет работать приложение
+EXPOSE 3000
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Устанавливаем переменную окружения для порта
+ENV PORT 3000
+
+# Команда для запуска приложения
+CMD ["node", "server.js"]

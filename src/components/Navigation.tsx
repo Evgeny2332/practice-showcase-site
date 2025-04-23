@@ -8,7 +8,7 @@ export function Navigation() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center justify-center gap-4">
           <Link to="/week1">
             <Button
               variant={location.pathname === "/week1" ? "default" : "outline"}
@@ -32,7 +32,7 @@ export function Navigation() {
           </Link>
         </div>
         <div className="text-right">
-          <p className="font-semibold">Бессонов Егор Вячеславович</p>
+          <p className="font-semibold">Шулико Богдан Павлович</p>
           <p className="text-sm text-gray-600">Группа 22ИСП4-o9</p>
         </div>
       </div>
