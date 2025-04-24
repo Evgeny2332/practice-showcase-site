@@ -32,7 +32,7 @@ export function Navigation() {
           </Link>
         </div>
         <div className="text-right items-center">
-          <p className="font-semibold text-center">Шулико Богдан Павлович</p>
+          <p className="font-semibold text-center">Путинцев Евгений Леонидович</p>
           <p className="text-sm text-gray-600 text-center">Группа 22ИСП4-o9</p>
         </div>
       </div>
